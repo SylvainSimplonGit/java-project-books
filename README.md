@@ -129,7 +129,7 @@ cd src && javac
 
 ## Etapes
 
-1. Compter le nombre de mots dans le fichier *mot.txt*
+1. Compter le nombre de mots dans le fichier *mot.txt* => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/72cd14796d016956a8ed3b6b4046c7375b6caf06)
 2. Trouver les 50 mots les plus utilisés
 
 ## Ressources externes utilisées
