@@ -113,6 +113,15 @@ Cette commande fera une copie de ce repository sur votre poste local.
 
 ### Pour Windows
 
+#### Pré Traitement
+
+Dans le répertoire **\<repertoire\>**, executer la commande suivante pour épurer le fichier "livre" :
+
+```cmd
+cd src && javac BooksToWords
+cd ../out/production/java-project-books/ && java BooksToWords.java ../..
+```
+
 Dans le répertoire **\<repertoire\>**, executer la commande suivante pour changer de répertoire :
 
 ```cmd
@@ -130,7 +139,14 @@ cd src && javac
 ## Etapes
 
 1. Compter le nombre de mots dans le fichier *mot.txt* => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/72cd14796d016956a8ed3b6b4046c7375b6caf06)
-2. Trouver les 50 mots les plus utilisés
+1. Créer la class BooksToWords pour effectuer le pré-traitement des livres => le pré traitement par la class Java ne remplace pas les Majuscules
+1. Utilisation du fichier BooksToWords.py => 
+    ```cmd
+    c:\Python3\python.exe src\BooksToWords.py ressources\books\mots.txt ressources\books\mots.epure.txt
+    ```
+1. Trouver les 50 mots les plus utilisés => Reportée
+1. Créer la Class Book pour accéder aux propriété de chaque livre => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/d85e8edf71c4a05766a9ca5caeb648b6b6d42af7)
+1. Créer une Class Menus pour l'affichage des différents menus => 
 
 ## Ressources externes utilisées
 
