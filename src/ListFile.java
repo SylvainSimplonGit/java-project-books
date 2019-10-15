@@ -5,6 +5,7 @@ public class ListFile {
     private String[] listOfFiles;
     private int numberOfFiles;
     private int indexOfChosenFile;
+    private String pathOfChosenFile;
 
     // --------------------------------------------------------------
     //      Constructor
@@ -12,7 +13,6 @@ public class ListFile {
     public ListFile(String[] listFiles) {
         listOfFiles = listFiles;
         numberOfFiles = calculateNumberOfFiles();
-
     }
 
     // --------------------------------------------------------------
@@ -33,12 +33,18 @@ public class ListFile {
         return this.indexOfChosenFile;
     }
 
+    // Return the path of chosen file
+    public String getPathOfChosenFile() {
+        return this.pathOfChosenFile;
+    }
+
     // --------------------------------------------------------------
-    //      Getter
+    //      Setter
     // --------------------------------------------------------------
-    // Set the index of chosen file
-    public void setIndexOfChosenFile(int index) {
+    // Set the chosen file
+    public void setChosenFile(int index) {
         this.indexOfChosenFile = index;
+        this.pathOfChosenFile = this.listOfFiles[index];
     }
 
     // --------------------------------------------------------------
@@ -83,4 +89,5 @@ public class ListFile {
     private int calculateNumberOfFiles() {
         return this.listOfFiles.length;
     }
+
 }
