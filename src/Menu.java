@@ -1,11 +1,10 @@
 import java.util.Scanner;
 
-public class Menus {
-
-    // TODO la sortie des différents menus boucle mal, à analyser
+public class Menu {
 
     // Show Main Menu
-    public static void getEntryOfMainMenu() {
+    // The variable quit indicates whether to leave the menu
+    public static void getEntryOfMainMenu(boolean quit) {
         String[] arrayChoiceMainMenu = {
                 "[1] => Lister les fichiers",
                 "[2] => Ajouter un fichier",
@@ -13,27 +12,25 @@ public class Menus {
                 "[4] => Afficher des informations sur un livre",
                 "[0] => Quitter le programme"
         };
-        boolean quit = false;
+
         Scanner scInput;
 
         while (!quit) {
-//            clearConsole();
             scInput = new Scanner(System.in);
             int choice = getChoiceMenu(arrayChoiceMainMenu, scInput);
             quit = executeFunctions(choice, scInput);
         }
-
     }
 
-    // Show Menu Informations
-    private static void getEntryOfInfoFilesMenu() {
+    // Show Menu Information
+    // The variable quit indicates whether to leave the menu
+    private static void getEntryOfInfoFilesMenu(boolean quit) {
         String[] arrayChoiceInfoFilesMenu = {
                 "[1] => Afficher la liste des fichiers",
                 "[2] => Choisir un des fichiers",
                 "[3] => Afficher le sous menu",
                 "[0] => Retour au menu précédent"
         };
-        boolean quit = false;
         Scanner scInput;
 
         while (!quit) {
@@ -44,14 +41,14 @@ public class Menus {
         }
     }
 
-    // Show Sub Menu Informations
-    private static void getEntryOfInfoFileMenu() {
+    // Show Sub Menu Information
+    // The variable quit indicates whether to leave the menu
+    private static void getEntryOfInfoFileMenu(boolean quit) {
         String[] arrayChoiceInfoFileMenu = {
                 "[1] => Afficher le nombre de ligne du fichier",
                 "[2] => Afficher le nombre de mot du fichier",
                 "[0] => Retour au menu précédent"
         };
-        boolean quit = false;
         Scanner scInput;
 
         while (!quit) {
@@ -81,11 +78,10 @@ public class Menus {
                 noValid = true;
             }
         }
-
         return entry;
     }
 
-    private static boolean executeFunctions(int choice, Scanner scInput) {
+    private static boolean executeFunctions(int choice) {
         boolean quit = false;
         switch (choice) {
             case 0:     // Quitter le programme
@@ -101,11 +97,12 @@ public class Menus {
 //                getFactorial(scInput);
                 break;
             case 4:     // Afficher des informations sur un livre
-                getEntryOfInfoFilesMenu();
+                quit = false;
+                getEntryOfInfoFilesMenu(quit);
                 break;
             case 40:    // Retour au menu principal
                 quit = true;
-                getEntryOfMainMenu();
+                getEntryOfMainMenu(quit);
                 break;
             case 41:    // Afficher la liste des fichiers
 //                getPalindrome(scInput);
@@ -114,11 +111,12 @@ public class Menus {
 //                getNumberFirst(scInput);
                 break;
             case 43:    // Afficher le sous menu
-                getEntryOfInfoFileMenu();
+                quit = false;
+                getEntryOfInfoFileMenu(quit);
                 break;
             case 430:   // Retour au sous menu
                 quit = true;
-                getEntryOfInfoFilesMenu();
+                getEntryOfInfoFilesMenu(quit);
                 break;
             case 431:   // Afficher le nombre de ligne du fichier
 //                getMultiplicationTable(scInput);
@@ -131,4 +129,5 @@ public class Menus {
         }
         return quit;
     }
+
 }

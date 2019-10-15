@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -8,7 +6,7 @@ public class Main {
         System.out.println("Début de Programme");
 
         // Display menus
-        Menus.getEntryOfMainMenu();
+        Menu.getEntryOfMainMenu(false);
 
         // Test of new instantiation of Book Object
         Book bookMots = new Book(args[0]);
