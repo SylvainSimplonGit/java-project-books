@@ -14,7 +14,7 @@ public class Menu {
                 "[0] => Quitter le programme"
         };
 
-        int[] validChoices = {0,1,2,3,4};
+        int[] validChoices = {0, 1, 2, 3, 4};
 
         while (!quit) {
             int choice = getChoiceMenu(arrayChoiceMainMenu, scInput);
@@ -33,7 +33,7 @@ public class Menu {
                 "[0] => Retour au menu précédent"
         };
 
-        int[] validChoices = {0,1,2,3};
+        int[] validChoices = {0, 1, 2, 3};
 
         while (!quit) {
             int choice = getChoiceMenu(arrayChoiceInfoFilesMenu, scInput);
@@ -51,7 +51,7 @@ public class Menu {
                 "[0] => Retour au menu précédent"
         };
 
-        int[] validChoices = {0,1,2};
+        int[] validChoices = {0, 1, 2};
 
         while (!quit) {
             int choice = getChoiceMenu(arrayChoiceInfoFileMenu, scInput);
@@ -72,8 +72,13 @@ public class Menu {
     // Show Menu List Of Files
     private static void showListOfFiles(String[] arrayChoiceListOfFilesMenu) {
         System.out.println("Liste des fichiers :");
-        for (int i = 0; i != arrayChoiceListOfFilesMenu.length; ++i) {
-            System.out.println("\t" + arrayChoiceListOfFilesMenu[i]);
+        if (arrayChoiceListOfFilesMenu.length > 0) {
+            for (int i = 0; i != arrayChoiceListOfFilesMenu.length; ++i) {
+                System.out.println("\t" + arrayChoiceListOfFilesMenu[i]);
+            }
+        } else {
+            System.out.println();
+            System.out.println(" La liste de fichier est vide !");
         }
         System.out.println();
     }
@@ -89,9 +94,11 @@ public class Menu {
                 entry = scInput.nextLine();
                 File newFile = new File(entry);
                 // Si le fichier existe
-                 if (newFile.exists()) {
-                     noValid = false;
-                     listOfFiles.addFileToListOfFiles(entry);
+                if (newFile.exists()) {
+                    noValid = false;
+                    listOfFiles.addFileToListOfFiles(entry);
+                } else {
+                    System.out.println("Le fichier " + entry + " n'existe pas, veuillez entrer un nom de fichier existant !");
                 }
 
             } catch (Exception e) {
@@ -105,20 +112,27 @@ public class Menu {
 
     // Delete File from list of files
     private static void showMenuDeleteFile(boolean quit, ListFile listOfFiles, Scanner scInput) {
-        String[] arrayChoiceListOfFilesMenu = getListOfFiles(listOfFiles);
+        if (listOfFiles.getNumberOfFiles() > 0) {
+            String[] arrayChoiceListOfFilesMenu = getListOfFiles(listOfFiles);
 
-        showListOfFiles(arrayChoiceListOfFilesMenu);
+            while (!quit) {
+                showListOfFiles(arrayChoiceListOfFilesMenu);
+                System.out.println("Quel fichier voulez supprimer de la liste");
+                int[] validChoices = new int[listOfFiles.getNumberOfFiles()];
+                for (int i = 0; i != validChoices.length; ++i) {
+                    validChoices[i] = i;
+                }
 
-        int[] validChoices = new int[listOfFiles.getNumberOfFiles()];
-        for (int i = 0; i != validChoices.length; ++i) {
-            validChoices[i] = i;
+                int choice = getChoiceMenu(arrayChoiceListOfFilesMenu, scInput);
+                if (isValidChoice(choice, validChoices))
+                    quit = removeFiles(choice, listOfFiles, scInput);
+            }
+        } else {
+            System.out.println();
+            System.out.println("La liste de fichiers est vide, vous ne pouvez donc pas supprimer un fichier !");
+            System.out.println();
         }
 
-        while (!quit) {
-            int choice = getChoiceMenu(arrayChoiceListOfFilesMenu, scInput);
-            if (isValidChoice(choice, validChoices))
-                quit = removeFiles(choice, listOfFiles, scInput);
-        }
     }
 
     private static int getChoiceMenu(String[] entriesMenu, Scanner scInput) {
@@ -126,7 +140,7 @@ public class Menu {
         int entry = 0;
 
         while (noValid) {
-            System.out.println("Choisissez la fonction que vous souhaitez executer");
+            System.out.println("Choisissez parmi la liste suivante :");
             for (String menu : entriesMenu) {
                 System.out.println(menu);
             }
@@ -166,6 +180,7 @@ public class Menu {
                 quit = true;
                 break;
             case 1:     //Lister les fichiers
+            case 41:
                 showListOfFiles(getListOfFiles(listOfFiles));
                 break;
             case 2:     // Ajouter un fichier
@@ -184,9 +199,6 @@ public class Menu {
             case 40:    // Retour au menu principal
                 quit = true;
                 getEntryOfMainMenu(quit, listOfFiles, scInput);
-                break;
-            case 41:    // Afficher la liste des fichiers
-//                getPalindrome(scInput);
                 break;
             case 42:    // Choisir un des fichiers
 //                getNumberFirst(scInput);
