@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Menu {
 
-    // Show Main Menu
+    // Display Main Menu
     // The variable quit indicates whether to leave the menu
     static void getEntryOfMainMenu(boolean quit, ListFile listOfFiles, Scanner scInput) {
         String[] arrayChoiceMainMenu = {
@@ -23,7 +23,7 @@ public class Menu {
         }
     }
 
-    // Show Menu Information
+    // Display Menu Information
     // The variable quit indicates whether to leave the menu
     private static void getEntryOfInfoFilesMenu(boolean quit, ListFile listOfFiles, Scanner scInput) {
         String[] arrayChoiceInfoFilesMenu = {
@@ -42,7 +42,7 @@ public class Menu {
         }
     }
 
-    // Show Sub Menu Information
+    // Display Sub Menu Information
     // The variable quit indicates whether to leave the menu
     private static void getEntryOfInfoFileMenu(boolean quit, ListFile listOfFiles, Scanner scInput) {
         String[] arrayChoiceInfoFileMenu = {
@@ -60,7 +60,7 @@ public class Menu {
         }
     }
 
-    // get Menu List Of Files
+    // Get a formatted files list to display
     private static String[] getListOfFiles(ListFile listOfFiles) {
         String[] arrayChoiceListOfFilesMenu = new String[listOfFiles.getListOfFiles().length];
         for (int i = 0; i != arrayChoiceListOfFilesMenu.length; ++i) {
@@ -69,7 +69,7 @@ public class Menu {
         return arrayChoiceListOfFilesMenu;
     }
 
-    // Show Menu List Of Files
+    // Display files list
     private static void showListOfFiles(String[] arrayChoiceListOfFilesMenu) {
         System.out.println("Liste des fichiers :");
         if (arrayChoiceListOfFilesMenu.length > 0) {
@@ -83,7 +83,7 @@ public class Menu {
         System.out.println();
     }
 
-    // Show Menu Add File
+    // Display menu add file in files list
     private static void showMenuAddFile(boolean quit, ListFile listOfFiles, Scanner scInput) {
         boolean noValid = true;
         String entry = "";
@@ -110,7 +110,7 @@ public class Menu {
 //        return entry;
     }
 
-    // Delete File from list of files
+    // Display menu delete file from files list
     private static void showMenuDeleteFile(boolean quit, ListFile listOfFiles, Scanner scInput) {
         if (listOfFiles.getNumberOfFiles() > 0) {
             String[] arrayChoiceListOfFilesMenu = getListOfFiles(listOfFiles);
@@ -125,16 +125,52 @@ public class Menu {
 
                 int choice = getChoiceMenu(arrayChoiceListOfFilesMenu, scInput);
                 if (isValidChoice(choice, validChoices))
-                    quit = removeFiles(choice, listOfFiles, scInput);
+                    quit = removeFile(choice, listOfFiles);
             }
         } else {
             System.out.println();
             System.out.println("La liste de fichiers est vide, vous ne pouvez donc pas supprimer un fichier !");
             System.out.println();
         }
-
     }
 
+    // Remove file from files list
+    private static boolean removeFile(int choice, ListFile listOfFiles) {
+        listOfFiles.deleteFileFromListOfFiles(choice);
+        return true;
+    }
+
+    // Display menu to choose a file in files list
+    private static void showMenuChooseFile(boolean quit, ListFile listOfFiles, Scanner scInput) {
+        if (listOfFiles.getNumberOfFiles() > 0) {
+            String[] arrayChoiceListOfFilesMenu = getListOfFiles(listOfFiles);
+
+            while (!quit) {
+                showListOfFiles(arrayChoiceListOfFilesMenu);
+                System.out.println("Sur quel fichier voulez-vous travailler");
+                int[] validChoices = new int[listOfFiles.getNumberOfFiles()];
+                for (int i = 0; i != validChoices.length; ++i) {
+                    validChoices[i] = i;
+                }
+
+                int choice = getChoiceMenu(arrayChoiceListOfFilesMenu, scInput);
+                if (isValidChoice(choice, validChoices))
+                    quit = chooseFile(choice, listOfFiles);
+            }
+        } else {
+            System.out.println();
+            System.out.println("La liste de fichiers est vide, vous ne pouvez donc pas avoir d'informations sur un fichier !");
+            System.out.println();
+        }
+    }
+
+    // Choose a file from the files list
+    private static boolean chooseFile(int choice, ListFile listOfFiles) {
+        listOfFiles.setIndexOfChosenFile(choice);
+        return true;
+    }
+
+    // Display the menu and get the type input
     private static int getChoiceMenu(String[] entriesMenu, Scanner scInput) {
         boolean noValid = true;
         int entry = 0;
@@ -157,6 +193,7 @@ public class Menu {
         return entry;
     }
 
+    // Check if choice is in validChoice list
     private static boolean isValidChoice(int choice, int[] validChoices) {
         boolean flagNoValid = false;
 
@@ -168,19 +205,16 @@ public class Menu {
         return flagNoValid;
     }
 
-    private static boolean removeFiles(int choice, ListFile listOfFiles, Scanner scInput) {
-        listOfFiles.deleteFileFromListOfFiles(choice);
-        return true;
-    }
-
+    // Execute the function according to the choice
     private static boolean executeFunctions(int choice, ListFile listOfFiles, Scanner scInput) {
+        // the variable quit makes it possible to know if it is necessary to leave or not of the following menu
         boolean quit = false;
         switch (choice) {
             case 0:     // Quitter le programme
                 quit = true;
                 break;
             case 1:     //Lister les fichiers
-            case 41:
+            case 41:    //Lister les fichiers
                 showListOfFiles(getListOfFiles(listOfFiles));
                 break;
             case 2:     // Ajouter un fichier
@@ -201,7 +235,8 @@ public class Menu {
                 getEntryOfMainMenu(quit, listOfFiles, scInput);
                 break;
             case 42:    // Choisir un des fichiers
-//                getNumberFirst(scInput);
+                showMenuChooseFile(quit, listOfFiles, scInput);
+                quit = false;
                 break;
             case 43:    // Afficher le sous menu
                 quit = false;
@@ -212,6 +247,7 @@ public class Menu {
                 getEntryOfInfoFilesMenu(quit, listOfFiles, scInput);
                 break;
             case 431:   // Afficher le nombre de ligne du fichier
+                System.out.println("Fichier selectionné : " + listOfFiles.getIndexOfChosenFile());
 //                getMultiplicationTable(scInput);
                 break;
             case 432:   // Afficher le nombre de mot du fichier
