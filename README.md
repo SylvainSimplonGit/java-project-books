@@ -143,19 +143,41 @@ cd src && javac
 
 ## Etapes
 
-1. Compter le nombre de mots dans le fichier *mot.txt* => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/72cd14796d016956a8ed3b6b4046c7375b6caf06)
-1. Créer la class BooksToWords pour effectuer le pré-traitement des livres => **le pré traitement par la class Java ne remplace pas les Majuscules**
-1. Utilisation du fichier BooksToWords.py => 
+1. Compter le nombre de mots dans le fichier *mot.txt*
 
-    ```cmd
+   => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/72cd14796d016956a8ed3b6b4046c7375b6caf06)
+
+1. Créer la class BooksToWords pour effectuer le pré-traitement des livres
+
+   => **le pré traitement par la class Java ne remplace pas les Majuscules**
+
+1. Utilisation du fichier BooksToWords.py, j'ai utilisé cette ligne de commande sous *Windows*
+
+   ```cmd
     c:\Python3\python.exe src\BooksToWords.py ressources\books\mots.txt ressources\books\mots.epure.txt
     ```
 
-1. Trouver les 50 mots les plus utilisés => Reportée
-1. Créer la Class Book pour accéder aux propriété de chaque livre => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/d85e8edf71c4a05766a9ca5caeb648b6b6d42af7)
-1. Créer une Class Menu pour l'affichage des différents menus => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/1636510f80a4431a9e6ca13cfba850b164b2a937)
-1. Créer une Class ListFile pour gérer les listes de fichiers livres => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/4554360c59febbfb9a175295b002b06d48194625)
-1. ***MVP*** les différents menus fonctionnent => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/ec2fe1969f77f1e88336008d801835148cbb06b1) 
+1. Trouver les 50 mots les plus utilisés
+
+   => Reportée
+
+1. Créer la Class Book pour accéder aux propriété de chaque livre
+
+   => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/d85e8edf71c4a05766a9ca5caeb648b6b6d42af7)
+
+1. Créer une Class Menu pour l'affichage des différents menus
+
+   => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/1636510f80a4431a9e6ca13cfba850b164b2a937)
+
+1. Créer une Class ListFile pour gérer les listes de fichiers livres
+
+   => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/4554360c59febbfb9a175295b002b06d48194625)
+
+1. ***MVP atteint*** les différents menus fonctionnent
+
+   => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/ec2fe1969f77f1e88336008d801835148cbb06b1)
+
+1. Reste à implémenter les objectifs
 
 ## Ressources externes utilisées
 
