@@ -115,6 +115,7 @@ Cette commande fera une copie de ce repository sur votre poste local.
 
 #### Pré Traitement
 
+##### via JAVA
 Dans le répertoire **\<repertoire\>**, executer la commande suivante pour épurer le fichier "livre" :
 
 ```cmd
@@ -122,11 +123,15 @@ cd src && javac BooksToWords
 cd ../out/production/java-project-books/ && java BooksToWords.java ../..
 ```
 
-Dans le répertoire **\<repertoire\>**, executer la commande suivante pour changer de répertoire :
+##### Via Python
+
+Dans le répertoire **\<repertoire\>**, executer la commande suivante pour épurer le fichier <livre.txt> :
 
 ```cmd
-cd src && javac 
+cd src && python3 BooksToWords.py ../ressources/books/<livre.txt> ../ressources/books_clean/clean_<livre.txt>  
 ```
+
+Le fichier épuré sera visible dans le répertoire **\<repertoire\>**\ressources\books_clean\
 
 ### Pour Linux
 
@@ -149,6 +154,8 @@ cd src && javac
 1. Trouver les 50 mots les plus utilisés => Reportée
 1. Créer la Class Book pour accéder aux propriété de chaque livre => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/d85e8edf71c4a05766a9ca5caeb648b6b6d42af7)
 1. Créer une Class Menu pour l'affichage des différents menus => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/1636510f80a4431a9e6ca13cfba850b164b2a937)
+1. Créer une Class ListFile pour gérer les listes de fichiers livres => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/4554360c59febbfb9a175295b002b06d48194625)
+1. Créer les copie profonde des objects
 
 ## Ressources externes utilisées
 
