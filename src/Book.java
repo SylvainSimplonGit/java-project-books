@@ -9,6 +9,7 @@ public class Book {
     // --------------------------------------------------------------
     //    private int numberOfWord;
     private int numberOfDifferentWord;
+    private int numberOfTotalWord;
     private String filename;
 
     // --------------------------------------------------------------
@@ -16,16 +17,22 @@ public class Book {
     // --------------------------------------------------------------
     public Book(String pathFileName) {
         filename = pathFileName;
-        numberOfDifferentWord = calculateNumberOfDifferentWord();
-
+        readFileToArrayList(this.filename);
+//        numberOfDifferentWord = calculateNumberOfDifferentWord();
+//        numberOfWord =
     }
 
     // --------------------------------------------------------------
     //      Getters
     // --------------------------------------------------------------
     // Get the number of different words in a book
+    public int getNumberOfTotalWord() {
+        return this.numberOfTotalWord;
+    }
+
+    // Get the number of different words in a book
     public int getNumberOfDifferentWord() {
-        return numberOfDifferentWord;
+        return this.numberOfDifferentWord;
     }
 
     // Get a list of words in the book sorted by number of occurrences
@@ -35,17 +42,18 @@ public class Book {
     // --------------------------------------------------------------
 
     // Find the number of different word in file
-    private int calculateNumberOfDifferentWord() {
-        // Read file this.filename
-        HashMap listWords = readFileToArrayList(this.filename);
-        // Count the number of different words
-        return listWords.size();
-    }
+//    private int calculateNumberOfDifferentWord() {
+//        // Read file this.filename
+//        HashMap listWords = readFileToArrayList(this.filename);
+//        // Count the number of different words
+//        return listWords.size();
+//    }
 
     // Read file and return a HashMap contains different word in file
-    private static HashMap readFileToArrayList(String nameFile) {
+    private void readFileToArrayList(String nameFile) {
         HashMap<String, Integer> listWords = new HashMap<>();
         int numberWord = 0;
+        int numberTotalWord = 0;
         try (Scanner scFile = new Scanner(new File(nameFile))) {
             for (int i = 0; (scFile.hasNextLine()); ++i) {
                 // Read each line of file
@@ -56,12 +64,16 @@ public class Book {
                     numberWord = (listWords.get(word) != null) ? listWords.get(word) : 0;
                     // For each word, increment its value
                     listWords.put(word, numberWord + 1);
+                    ++numberTotalWord;
                 }
             }
         } catch (FileNotFoundException e) {
             System.out.println("Une erreur est survenue !\n" + e.getLocalizedMessage());
         }
-        return listWords;
+        this.numberOfTotalWord = numberTotalWord;
+        this.numberOfDifferentWord = listWords.size();
+
+//        return listWords;
     }
 
     // Find a list of words sorted by number of times the word is seen

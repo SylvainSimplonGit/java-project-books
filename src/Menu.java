@@ -166,8 +166,22 @@ public class Menu {
 
     // Choose a file from the files list
     private static boolean chooseFile(int choice, ListFile listOfFiles) {
-        listOfFiles.setIndexOfChosenFile(choice);
+        listOfFiles.setChosenFile(choice);
         return true;
+    }
+
+    // Display the number of line in chosen file
+    private static boolean showNumberOfLinesOfChosenFile(ListFile listOfFiles) {
+        Book book = new Book(listOfFiles.getPathOfChosenFile());
+        System.out.println("Le fichier " + listOfFiles.getPathOfChosenFile() + " contient " + book.getNumberOfTotalWord() + " ligne(s)");
+        return false;
+    }
+
+    // Display the number of line in chosen file
+    private static boolean showNumberOfDifferentsWordsOfChosenFile(ListFile listOfFiles) {
+        Book book = new Book(listOfFiles.getPathOfChosenFile());
+        System.out.println("Le fichier " + listOfFiles.getPathOfChosenFile() + " contient " + book.getNumberOfDifferentWord() + " mot(s) différent(s)");
+        return false;
     }
 
     // Display the menu and get the type input
@@ -247,11 +261,10 @@ public class Menu {
                 getEntryOfInfoFilesMenu(quit, listOfFiles, scInput);
                 break;
             case 431:   // Afficher le nombre de ligne du fichier
-                System.out.println("Fichier selectionné : " + listOfFiles.getIndexOfChosenFile());
-//                getMultiplicationTable(scInput);
+                showNumberOfLinesOfChosenFile(listOfFiles);
                 break;
             case 432:   // Afficher le nombre de mot du fichier
-//                getMultiplicationTable(scInput);
+                showNumberOfDifferentsWordsOfChosenFile(listOfFiles);
                 break;
             default:
 
