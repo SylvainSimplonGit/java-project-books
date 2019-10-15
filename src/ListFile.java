@@ -48,6 +48,7 @@ public class ListFile {
             }
         }
         this.listOfFiles = newListOfFiles;
+        this.setNumberOfFiles();
     }
 
     private int calculateNumberOfFiles() {
