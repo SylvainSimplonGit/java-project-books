@@ -148,7 +148,7 @@ cd src && javac
 
 1. Trouver les 50 mots les plus utilisés => Reportée
 1. Créer la Class Book pour accéder aux propriété de chaque livre => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/d85e8edf71c4a05766a9ca5caeb648b6b6d42af7)
-1. Créer une Class Menu pour l'affichage des différents menus => 
+1. Créer une Class Menu pour l'affichage des différents menus => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/1636510f80a4431a9e6ca13cfba850b164b2a937)
 
 ## Ressources externes utilisées
 
