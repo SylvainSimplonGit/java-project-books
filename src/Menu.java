@@ -18,7 +18,7 @@ public class Menu {
         while (!quit) {
             scInput = new Scanner(System.in);
             int choice = getChoiceMenu(arrayChoiceMainMenu, scInput);
-            quit = executeFunctions(choice, scInput);
+            quit = executeFunctions(choice);
         }
     }
 
@@ -37,7 +37,7 @@ public class Menu {
 //            clearConsole();
             scInput = new Scanner(System.in);
             int choice = getChoiceMenu(arrayChoiceInfoFilesMenu, scInput);
-            quit = executeFunctions(choice + 40, scInput);
+            quit = executeFunctions(choice + 40);
         }
     }
 
@@ -55,7 +55,7 @@ public class Menu {
 //            clearConsole();
             scInput = new Scanner(System.in);
             int choice = getChoiceMenu(arrayChoiceInfoFileMenu, scInput);
-            quit = executeFunctions(choice + 430, scInput);
+            quit = executeFunctions(choice + 430);
         }
     }
 
