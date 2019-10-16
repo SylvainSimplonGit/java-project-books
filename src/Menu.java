@@ -1,7 +1,10 @@
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
+
+    private static Book bookChosen;
 
     // Display Main Menu
     // The variable quit indicates whether to leave the menu
@@ -48,10 +51,11 @@ public class Menu {
         String[] arrayChoiceInfoFileMenu = {
                 "[1] => Afficher le nombre de ligne du fichier",
                 "[2] => Afficher le nombre de mot du fichier",
+                "[3] => Afficher les 50 premiers mots le plus souvent utilisés dans le fichier",
                 "[0] => Retour au menu précédent"
         };
 
-        int[] validChoices = {0, 1, 2};
+        int[] validChoices = {0, 1, 2, 3};
 
         while (!quit) {
             int choice = getChoiceMenu(arrayChoiceInfoFileMenu, scInput);
@@ -173,20 +177,31 @@ public class Menu {
     // Choose a file from the files list
     private static boolean chooseFile(int choice, ListFile listOfFiles) {
         listOfFiles.setChosenFile(choice);
+        bookChosen = new Book(listOfFiles.getPathOfChosenFile());
         return true;
     }
 
     // Display the number of line in chosen file
     private static boolean showNumberOfLinesOfChosenFile(ListFile listOfFiles) {
-        Book book = new Book(listOfFiles.getPathOfChosenFile());
-        System.out.println("Le fichier " + listOfFiles.getPathOfChosenFile() + " contient " + book.getNumberOfTotalWord() + " ligne(s)");
+        System.out.println("Le fichier " + listOfFiles.getPathOfChosenFile() + " contient " + bookChosen.getNumberOfTotalWord() + " ligne(s)");
         return false;
     }
 
     // Display the number of line in chosen file
     private static boolean showNumberOfDifferentsWordsOfChosenFile(ListFile listOfFiles) {
-        Book book = new Book(listOfFiles.getPathOfChosenFile());
-        System.out.println("Le fichier " + listOfFiles.getPathOfChosenFile() + " contient " + book.getNumberOfDifferentWord() + " mot(s) différent(s)");
+        System.out.println("Le fichier " + listOfFiles.getPathOfChosenFile() + " contient " + bookChosen.getNumberOfDifferentWord() + " mot(s) différent(s)");
+        return false;
+    }
+
+    // Display the most used words in the chosen file
+    private static boolean showMostUsedWords(int numbers, ListFile listOfFiles) {
+        ArrayList wordsSorted = bookChosen.getArrayListOfWordsSorted();
+        System.out.println("Les " + numbers + " premiers mots les plus utilisés du fichier " + listOfFiles.getPathOfChosenFile() + " sont :");
+        for (int i = 0; i != numbers; ++i) {
+            Word wordSorted = (Word) wordsSorted.get(i);
+            System.out.println("(" + wordSorted.getNumberSeen() + ")\t" + wordSorted.getWord());
+        }
+        System.out.println();
         return false;
     }
 
@@ -271,6 +286,10 @@ public class Menu {
                 break;
             case 432:   // Afficher le nombre de mot du fichier
                 showNumberOfDifferentsWordsOfChosenFile(listOfFiles);
+                break;
+            case 433:   // Afficher les 50 premiers mots les plus utilisés du fichier
+                int numbers = 50;
+                showMostUsedWords(numbers, listOfFiles);
                 break;
             default:
 
