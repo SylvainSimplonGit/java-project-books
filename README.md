@@ -175,7 +175,7 @@ cd src && javac
 
 1. ***MVP atteint*** les différents menus fonctionnent
 
-   => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/ec2fe1969f77f1e88336008d801835148cbb06b1)
+   => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/7d116da00e2b0b503049a7d9c1d67b3ed5e647dc)
 
 1. Reste à implémenter les objectifs
 
