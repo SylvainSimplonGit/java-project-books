@@ -124,8 +124,11 @@ public class Menu {
                 }
 
                 int choice = getChoiceMenu(arrayChoiceListOfFilesMenu, scInput);
-                if (isValidChoice(choice, validChoices))
+                if (isValidChoice(choice, validChoices)) {
                     quit = removeFile(choice, listOfFiles);
+                } else {
+                    System.out.println("Choix de fichier non valide, veuillez choisir dans la liste !");
+                }
             }
         } else {
             System.out.println();
@@ -154,8 +157,11 @@ public class Menu {
                 }
 
                 int choice = getChoiceMenu(arrayChoiceListOfFilesMenu, scInput);
-                if (isValidChoice(choice, validChoices))
+                if (isValidChoice(choice, validChoices)) {
                     quit = chooseFile(choice, listOfFiles);
+                } else {
+                    System.out.println("Choix de fichier non valide, veuillez choisir dans la liste !");
+                }
             }
         } else {
             System.out.println();
