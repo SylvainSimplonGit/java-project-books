@@ -4,7 +4,6 @@ public class ListFile {
     // --------------------------------------------------------------
     private String[] listOfFiles;
     private int numberOfFiles;
-    private int indexOfChosenFile;
     private String pathOfChosenFile;
 
     // --------------------------------------------------------------
@@ -19,22 +18,17 @@ public class ListFile {
     //      Getter
     // --------------------------------------------------------------
     // Return the number of files from the list
-    public int getNumberOfFiles() {
+    int getNumberOfFiles() {
         return this.numberOfFiles;
     }
 
     // Return the files list
-    public String[] getListOfFiles() {
+    String[] getListOfFiles() {
         return this.listOfFiles;
     }
 
-    // Return the index of chosen file
-    public int getIndexOfChosenFile() {
-        return this.indexOfChosenFile;
-    }
-
     // Return the path of chosen file
-    public String getPathOfChosenFile() {
+    String getPathOfChosenFile() {
         return this.pathOfChosenFile;
     }
 
@@ -42,8 +36,7 @@ public class ListFile {
     //      Setter
     // --------------------------------------------------------------
     // Set the chosen file
-    public void setChosenFile(int index) {
-        this.indexOfChosenFile = index;
+    void setChosenFile(int index) {
         this.pathOfChosenFile = this.listOfFiles[index];
     }
 
@@ -51,7 +44,7 @@ public class ListFile {
     //      Public Methods
     // --------------------------------------------------------------
     // Add a file filename to the files list
-    public void addFileToListOfFiles(String filename) {
+    void addFileToListOfFiles(String filename) {
         String[] newListOfFiles = new String[this.listOfFiles.length + 1];
         for (int i = 0; i != this.listOfFiles.length; ++i) {
             newListOfFiles[i] = this.listOfFiles[i];
@@ -62,7 +55,7 @@ public class ListFile {
     }
 
     // Delete the file at the index from files list
-    public void deleteFileFromListOfFiles(int index) {
+    void deleteFileFromListOfFiles(int index) {
         int indexNew = 0;
 
         String[] newListOfFiles = new String[this.listOfFiles.length - 1];
