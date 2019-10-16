@@ -14,7 +14,7 @@ public class BooksToWords {
             PrintStream fileOut = new PrintStream(new FileOutputStream(args[1]))){
             for(int i=0; sc.hasNextLine(); ++i){
                 for(Matcher m1 = p.matcher(sc.nextLine()); m1.find();) {
-                    fileOut.println(m1.group());
+                    fileOut.println(m1.group().toLowerCase());
                 }
             }
         }
