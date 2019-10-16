@@ -17,14 +17,8 @@ public class Main {
         listOfFiles = setListOfFiles(args);
 
         // Display menus
-        Menu.getEntryOfMainMenu(false, listOfFiles, scInput);
-
-
-
-
-        // Test of new instantiation of Book Object
-//        Book bookMots = new Book(args[0]);
-//        System.out.println("Il y a " + bookMots.getNumberOfDifferentWord() + " mots différents dans " + args[0]);
+        Menu menu = new Menu();
+        menu.getEntryOfMainMenu(false, listOfFiles, scInput);
 
         System.out.println("Fin de Programme");
 
