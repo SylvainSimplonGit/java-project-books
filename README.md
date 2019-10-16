@@ -177,6 +177,10 @@ cd src && javac
 
    => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/7d116da00e2b0b503049a7d9c1d67b3ed5e647dc)
 
+1. Créer une Class Word pour gérer les apparitions et tri de mots
+
+   => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/e0be013e0693548446e6ddb16ad10a4a20abc5cd)
+
 1. Reste à implémenter les objectifs
 
 ## Ressources externes utilisées
