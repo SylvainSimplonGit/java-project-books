@@ -5,41 +5,59 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class Book {
-    // --------------------------------------------------------------
-    //      Declare attributes
-    // --------------------------------------------------------------
+    /**
+     * Declare attributes
+     */
     private int numberOfDifferentWord;
     private int numberOfTotalWord;
     private String filename;
     private ArrayList<Word> words;
 
-    // --------------------------------------------------------------
-    //      Constructor
-    // --------------------------------------------------------------
+    /**
+     * Constructor of Book
+     *
+     * @param pathFileName  : path and file name of the book
+     */
     public Book(String pathFileName) {
         this.filename = pathFileName;
         readFileToArrayList(pathFileName);
     }
 
-    // --------------------------------------------------------------
-    //      Getters
-    // --------------------------------------------------------------
-    // Get the filename of the book
+    /**
+     * Get the book filename
+     *
+     * @return      : the filename of book
+     */
     String getFilename() {
         return this.filename;
     }
 
-    // Get the number of different words in a book
+    /**
+     * Get the count of total words in a book
+     * @return      : the count of total words in a book
+     */
     int getNumberOfTotalWord() {
         return this.numberOfTotalWord;
     }
 
     // Get the number of different words in a book
+
+    /**
+     * Get the count of different words in a book
+     *
+     * @return      : the count of different words in a book
+     */
     int getNumberOfDifferentWord() {
         return this.numberOfDifferentWord;
     }
 
-    // Get a list of words in the book sorted by number of occurrences
+    //
+
+    /**
+     * Get the list of words in the book sorted by number of occurrences
+     *
+     * @return      : the list of words in the book sorted by number of occurrences
+     */
     ArrayList<Word> getArrayListOfWordsSorted() {
         ArrayList<Word> wordsSorted = new ArrayList<>();
         for (int i = 0; i != this.words.size(); ++i) {
@@ -53,7 +71,13 @@ public class Book {
     //      Internal Methods
     // --------------------------------------------------------------
 
-    // Read file and return a HashMap contains different word in file
+    //
+
+    /**
+     * Read the file and return a HashMap containing the different words in the file
+     *
+     * @param nameFile      : name of the file that contains the words to extract
+     */
     private void readFileToArrayList(String nameFile) {
         int numberTotalWord = 0;
         this.words = new ArrayList<>();
