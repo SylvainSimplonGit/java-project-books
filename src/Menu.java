@@ -6,8 +6,13 @@ public class Menu {
 
     private static Book bookChosen;
 
-    // Display Main Menu
-    // The variable quit indicates whether to leave the menu
+    /**
+     * Display the Main menu
+     *
+     * @param quit          : The variable quit indicates whether to leave the menu
+     * @param listOfFiles   : Object ListFile
+     * @param scInput       : Object Scanner
+     */
     static void getEntryOfMainMenu(boolean quit, ListFile listOfFiles, Scanner scInput) {
         String[] arrayChoiceMainMenu = {
                 "[1] => Lister les fichiers",
@@ -26,8 +31,13 @@ public class Menu {
         }
     }
 
-    // Display Menu Information
-    // The variable quit indicates whether to leave the menu
+    /**
+     * Display Menu Information
+     *
+     * @param quit          : The variable quit indicates whether to leave the menu
+     * @param listOfFiles   : Object ListFile
+     * @param scInput       : Object Scanner
+     */
     private static void getEntryOfInfoFilesMenu(boolean quit, ListFile listOfFiles, Scanner scInput) {
         String[] arrayChoiceInfoFilesMenu = {
                 "[1] => Afficher la liste des fichiers",
@@ -46,8 +56,13 @@ public class Menu {
         }
     }
 
-    // Display Sub Menu Information
-    // The variable quit indicates whether to leave the menu
+    /**
+     * Display Sub Menu Information
+     *
+     * @param quit          : The variable quit indicates whether to leave the menu
+     * @param listOfFiles   : Object ListFile
+     * @param scInput       : Object Scanner
+     */
     private static void getEntryOfInfoFileMenu(boolean quit, ListFile listOfFiles, Scanner scInput) {
         String[] arrayChoiceInfoFileMenu = {
                 "[1] => Afficher le fichier sélectionné",
@@ -68,7 +83,12 @@ public class Menu {
         }
     }
 
-    // Get a formatted files list to display
+    /**
+     * Get a formatted files list to display
+     *
+     * @param listOfFiles   : Object ListFile
+     * @return              : an Array that contains each filename in the managed file list
+     */
     private static String[] getListOfFiles(ListFile listOfFiles) {
         String[] arrayChoiceListOfFilesMenu;
         if (listOfFiles.getNumberOfFiles() > 0) {
@@ -82,7 +102,11 @@ public class Menu {
         return arrayChoiceListOfFilesMenu;
     }
 
-    // Display files list
+    /**
+     * Display managed file list
+     *
+     * @param arrayChoiceListOfFilesMenu    : array that contains each filename in the managed file list
+     */
     private static void showListOfFiles(String[] arrayChoiceListOfFilesMenu) {
         System.out.println("Liste des fichiers :");
         if (arrayChoiceListOfFilesMenu.length > 0) {
@@ -96,7 +120,13 @@ public class Menu {
         System.out.println();
     }
 
-    // Display menu add file in files list
+    /**
+     * Display menu add file in managed file list
+     *
+     * @param quit          : The variable quit indicates whether to leave the menu
+     * @param listOfFiles   : Object ListFile
+     * @param scInput       : Object Scanner
+     */
     private static void showMenuAddFile(boolean quit, ListFile listOfFiles, Scanner scInput) {
         boolean noValid = true;
         String entry = "";
@@ -123,7 +153,13 @@ public class Menu {
 //        return entry;
     }
 
-    // Display menu delete file from files list
+    /**
+     * Display menu delete file from managed file list
+     *
+     * @param quit          : The variable quit indicates whether to leave the menu
+     * @param listOfFiles   : Object ListFile
+     * @param scInput       : Object Scanner
+     */
     private static void showMenuDeleteFile(boolean quit, ListFile listOfFiles, Scanner scInput) {
         if (listOfFiles.getNumberOfFiles() > 0) {
             String[] arrayChoiceListOfFilesMenu = getListOfFiles(listOfFiles);
@@ -150,13 +186,25 @@ public class Menu {
         }
     }
 
-    // Remove file from files list
+    /**
+     * Remove file from managed file list
+     *
+     * @param choice        : index of the file selected for deletion
+     * @param listOfFiles   : Object ListFile
+     * @return              : true to go back to the previous menu
+     */
     private static boolean removeFile(int choice, ListFile listOfFiles) {
         listOfFiles.deleteFileFromListOfFiles(choice);
         return true;
     }
 
-    // Display menu to choose a file in files list
+    /**
+     * Display menu to choose a file in managed file list
+     *
+     * @param quit          : The variable quit indicates whether to leave the menu
+     * @param listOfFiles   : Object ListFile
+     * @param scInput       : Object Scanner
+     */
     private static void showMenuChooseFile(boolean quit, ListFile listOfFiles, Scanner scInput) {
         if (listOfFiles.getNumberOfFiles() > 0) {
             String[] arrayChoiceListOfFilesMenu = getListOfFiles(listOfFiles);
@@ -183,28 +231,50 @@ public class Menu {
         }
     }
 
-    // Choose a file from the files list
+    /**
+     * Choose a file from the managed file list
+     *
+     * @param choice        : index of the file selected
+     * @param listOfFiles   : Object ListFile
+     * @return              : true to go back to the previous menu
+     */
     private static boolean chooseFile(int choice, ListFile listOfFiles) {
         listOfFiles.setChosenFile(choice);
         bookChosen = new Book(listOfFiles.getPathOfChosenFile());
         return true;
     }
 
-    // Display the number of line in chosen file
+    /**
+     * Display the number of line in chosen file
+     *
+     * @param listOfFiles   : Object ListFile
+     * @return              : the number of line in the chosen file
+     */
     private static boolean showNumberOfLinesOfChosenFile(ListFile listOfFiles) {
         System.out.println("Le fichier " + listOfFiles.getPathOfChosenFile() + " contient " + bookChosen.getNumberOfTotalWord() + " ligne(s)");
         System.out.println();
         return false;
     }
 
-    // Display the number of line in chosen file
+    /**
+     * Display the number of different words in chosen file
+     *
+     * @param listOfFiles   : Object ListFile
+     * @return              : the number of different words in the chosen file
+     */
     private static boolean showNumberOfDifferentsWordsOfChosenFile(ListFile listOfFiles) {
         System.out.println("Le fichier " + listOfFiles.getPathOfChosenFile() + " contient " + bookChosen.getNumberOfDifferentWord() + " mot(s) différent(s)");
         System.out.println();
         return false;
     }
 
-    // Display the most used words in the chosen file
+    /**
+     * Display the most used words in the chosen file
+     *
+     * @param numbers       : the number of word to display
+     * @param listOfFiles   : Object ListFile
+     * @return              : true to go back to the previous menu
+     */
     private static boolean showMostUsedWords(int numbers, ListFile listOfFiles) {
         ArrayList wordsSorted = bookChosen.getArrayListOfWordsSorted();
         System.out.println("Les " + numbers + " premiers mots les plus utilisés du fichier " + listOfFiles.getPathOfChosenFile() + " sont :");
@@ -216,7 +286,12 @@ public class Menu {
         return false;
     }
 
-    // Display words only seen in the selected file
+    /**
+     * Display words only seen in the chosen file
+     *
+     * @param listOfFiles   : Object ListFile
+     * @return              : false to stay into the menu
+     */
     private static boolean showWordsOnlyInFile(ListFile listOfFiles) {
         Book[] books = new Book[listOfFiles.getNumberOfFiles() - 1];
         int j = 0;
@@ -250,7 +325,11 @@ public class Menu {
         return false;
     }
 
-    // Display chosen file
+    /**
+     * Display chosen file
+     *
+     * @param listOfFiles   : Object ListFile
+     */
     private static void showChosenFile(ListFile listOfFiles) {
         if (listOfFiles.hasChosenFile()) {
             System.out.println("Le fichier sélectionné : ");
@@ -261,7 +340,11 @@ public class Menu {
         System.out.println();
     }
 
-    // Display Percentage of appearance of words
+    /**
+     * Display Percentage of appearance of words
+     *
+     * @param listOfFiles   : Object ListFile
+     */
     private static void showPercentOfWords(ListFile listOfFiles) {
         if (listOfFiles.hasChosenFile()) {
             for (int i = 0; i != listOfFiles.getNumberOfFiles(); ++i) {
@@ -282,6 +365,13 @@ public class Menu {
         System.out.println();
     }
 
+    /**
+     * Get the count of common word between two list of Words
+     *
+     * @param listOfWordA   : list of word to test
+     * @param listOfWordB   : list of word to test
+     * @return              : count of common words
+     */
     private static int getCountOfCommonWords(ArrayList<Word> listOfWordA, ArrayList<Word> listOfWordB) {
         int countOfCommonWords = 0;
         ArrayList<Word> listOfWordMin = (listOfWordA.size() < listOfWordB.size()) ? listOfWordA : listOfWordB;
@@ -292,7 +382,13 @@ public class Menu {
         return countOfCommonWords;
     }
 
-    // Display the menu and get the type input
+    /**
+     * Display the menu and get the type input
+     *
+     * @param entriesMenu   : array of possible entries in menu
+     * @param scInput       : Object Scanner
+     * @return              : choice of the user
+     */
     private static int getChoiceMenu(String[] entriesMenu, Scanner scInput) {
         boolean noValid = true;
         int entry = 0;
@@ -315,7 +411,13 @@ public class Menu {
         return entry;
     }
 
-    // Check if choice is in validChoice list
+    /**
+     * Check if choice is in validChoice list
+     *
+     * @param choice        : choice of the user
+     * @param validChoices  : array of valid choices
+     * @return              : true if the choice of user is valid other false
+     */
     private static boolean isValidChoice(int choice, int[] validChoices) {
         boolean flagNoValid = false;
 
@@ -326,8 +428,15 @@ public class Menu {
         }
         return flagNoValid;
     }
-
-    // Execute the function according to the choice
+    
+    /**
+     * Execute the function according to the choice
+     *
+     * @param choice        : choice of the user
+     * @param listOfFiles   : Object ListFile
+     * @param scInput       : Object Scanner
+     * @return              : true to go back to the previous menu, false to keep in the current menu
+     */
     private static boolean executeFunctions(int choice, ListFile listOfFiles, Scanner scInput) {
         // the variable quit makes it possible to know if it is necessary to leave or not of the following menu
         boolean quit = false;
