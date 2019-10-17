@@ -191,6 +191,10 @@ Cette commande fera une copie de ce repository sur votre poste local.
 
    => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/6a18b59865217e3dd398d48009bec564d6a75685)
 
+1. Affichage des pourcentages de fichiers communs entre chaque fichier hors de la liste et le fichier de référence
+
+   => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/c0d5a53bc885b205735bd4837b731bf250e0d348)
+
 ## Ressources externes utilisées
 
 - [Installation de JAVA sous Windows](https://superuser.com/a/1317117)
