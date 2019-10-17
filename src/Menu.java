@@ -52,7 +52,7 @@ public class Menu {
         String[] arrayChoiceInfoFileMenu = {
                 "[1] => Afficher le fichier sélectionné",
                 "[2] => Afficher le nombre de ligne du fichier",
-                "[3] => Afficher le nombre de mot du fichier",
+                "[3] => Afficher le nombre de mot unique du fichier",
                 "[4] => Afficher les 50 premiers mots le plus souvent utilisés dans le fichier",
                 "[5] => Afficher les mots qui sont uniquement dans le fichier selectionné",
                 "[0] => Retour au menu précédent"
