@@ -32,6 +32,11 @@ public class ListFile {
         return this.pathOfChosenFile;
     }
 
+    // Return the path of chosen file
+    String getPathOfFileByIndex(int index) {
+        return this.listOfFiles[index];
+    }
+
     // --------------------------------------------------------------
     //      Setter
     // --------------------------------------------------------------
@@ -68,6 +73,15 @@ public class ListFile {
         }
         this.listOfFiles = newListOfFiles;
         this.setNumberOfFiles();
+    }
+
+    //
+    boolean hasChosenFile() {
+        if (this.pathOfChosenFile == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     // --------------------------------------------------------------
