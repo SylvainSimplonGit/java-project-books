@@ -181,7 +181,15 @@ cd src && javac
 
    => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/e0be013e0693548446e6ddb16ad10a4a20abc5cd)
 
-1. Reste à implémenter les objectifs
+1. Adaptation de la Class BooksToWords
+
+   => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/fd1adba0489f29b1bcb6dca2e7276d273d3970ad#diff-9ada41f22c4bb9796ffa2dfbcb0d9ca5)
+
+1. Affichage des 50 mots les plus utilisés sur un fichier
+
+   => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/52e73253ef5b789162673daa0c4f2df507648f15)
+   
+1. 
 
 ## Ressources externes utilisées
 
