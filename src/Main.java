@@ -14,7 +14,7 @@ public class Main {
         System.out.println();
 
         // Instantiation of the list of files from the arguments received
-        listOfFiles = setListOfFiles(args);
+        listOfFiles = new ListFile(args);
 
         // Display menus
         Menu menu = new Menu();
@@ -22,10 +22,6 @@ public class Main {
 
         System.out.println("Fin de Programme");
 
-    }
-
-    private static ListFile setListOfFiles(String[] listOfArgs) {
-        return new ListFile(listOfArgs);
     }
 
 }
