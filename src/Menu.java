@@ -32,11 +32,12 @@ public class Menu {
         String[] arrayChoiceInfoFilesMenu = {
                 "[1] => Afficher la liste des fichiers",
                 "[2] => Choisir un des fichiers",
-                "[3] => Afficher le sous menu",
+                "[3] => Afficher le fichier sélectionné",
+                "[4] => Afficher le sous menu",
                 "[0] => Retour au menu précédent"
         };
 
-        int[] validChoices = {0, 1, 2, 3};
+        int[] validChoices = {0, 1, 2, 3, 4};
 
         while (!quit) {
             int choice = getChoiceMenu(arrayChoiceInfoFilesMenu, scInput);
@@ -49,13 +50,15 @@ public class Menu {
     // The variable quit indicates whether to leave the menu
     private static void getEntryOfInfoFileMenu(boolean quit, ListFile listOfFiles, Scanner scInput) {
         String[] arrayChoiceInfoFileMenu = {
-                "[1] => Afficher le nombre de ligne du fichier",
-                "[2] => Afficher le nombre de mot du fichier",
-                "[3] => Afficher les 50 premiers mots le plus souvent utilisés dans le fichier",
+                "[1] => Afficher le fichier sélectionné",
+                "[2] => Afficher le nombre de ligne du fichier",
+                "[3] => Afficher le nombre de mot du fichier",
+                "[4] => Afficher les 50 premiers mots le plus souvent utilisés dans le fichier",
+                "[5] => Afficher les mots qui sont uniquement dans le fichier selectionné",
                 "[0] => Retour au menu précédent"
         };
 
-        int[] validChoices = {0, 1, 2, 3};
+        int[] validChoices = {0, 1, 2, 3, 4, 5};
 
         while (!quit) {
             int choice = getChoiceMenu(arrayChoiceInfoFileMenu, scInput);
@@ -184,12 +187,14 @@ public class Menu {
     // Display the number of line in chosen file
     private static boolean showNumberOfLinesOfChosenFile(ListFile listOfFiles) {
         System.out.println("Le fichier " + listOfFiles.getPathOfChosenFile() + " contient " + bookChosen.getNumberOfTotalWord() + " ligne(s)");
+        System.out.println();
         return false;
     }
 
     // Display the number of line in chosen file
     private static boolean showNumberOfDifferentsWordsOfChosenFile(ListFile listOfFiles) {
         System.out.println("Le fichier " + listOfFiles.getPathOfChosenFile() + " contient " + bookChosen.getNumberOfDifferentWord() + " mot(s) différent(s)");
+        System.out.println();
         return false;
     }
 
@@ -203,6 +208,51 @@ public class Menu {
         }
         System.out.println();
         return false;
+    }
+
+    // Display words only seen in the selected file
+    private static boolean showWordsOnlyInFile(ListFile listOfFiles) {
+        Book[] books = new Book[listOfFiles.getNumberOfFiles() - 1];
+        int j = 0;
+        for (int i = 0; i != listOfFiles.getNumberOfFiles(); ++i) {
+            // Si le fichier choisi et égale au fichier courant ne pas insérer dans le tableau
+            if (listOfFiles.getPathOfFileByIndex(i) != bookChosen.getFilename()) {
+                Book book = new Book(listOfFiles.getPathOfFileByIndex(i));
+                books[j] = book;
+                ++j;
+            }
+        }
+        ArrayList<Word> listWordsOfChosenFile = bookChosen.getArrayListOfWordsSorted();
+        for (Word word : listWordsOfChosenFile) {
+            boolean flagSeen = false;
+            int indexFileSave = 0;
+            for (int indexFile = 0; indexFile != books.length; ++indexFile) {
+                if (books[indexFile].getArrayListOfWordsSorted().contains(word)) {
+                    flagSeen = true;
+                    indexFileSave = indexFile;
+                    break;
+                }
+            }
+            if (!flagSeen) {
+                System.out.println(word.getWord());
+                String filenameBookChosenShort = "ressources/extracts/" + bookChosen.getFilename().substring(bookChosen.getFilename().lastIndexOf("/") + 1);
+
+                Debug.writeMessageInFile(filenameBookChosenShort, word.getWord());
+            }
+        }
+        System.out.println();
+        return false;
+    }
+
+    // Display chosen file
+    private static void showChosenFile(ListFile listOfFiles) {
+        if (listOfFiles.hasChosenFile()) {
+            System.out.println("Le fichier sélectionné : ");
+            System.out.println(bookChosen.getFilename());
+        } else {
+            System.out.println("Pas encore de fichiers sélectionné !");
+        }
+        System.out.println();
     }
 
     // Display the menu and get the type input
@@ -273,23 +323,35 @@ public class Menu {
                 showMenuChooseFile(quit, listOfFiles, scInput);
                 quit = false;
                 break;
-            case 43:    // Afficher le sous menu
-                quit = false;
-                getEntryOfInfoFileMenu(quit, listOfFiles, scInput);
+            case 43:    // Afficher le fichier sélectionné
+            case 431:   // Afficher le fichier sélectionné
+                showChosenFile(listOfFiles);
+                break;
+            case 44:    // Afficher le sous menu
+                if (listOfFiles.hasChosenFile()) {
+                    quit = false;
+                    getEntryOfInfoFileMenu(quit, listOfFiles, scInput);
+                } else {
+                    System.out.println("Pas de fichier sélectionné !");
+                    System.out.println();
+                }
                 break;
             case 430:   // Retour au sous menu
                 quit = true;
                 getEntryOfInfoFilesMenu(quit, listOfFiles, scInput);
                 break;
-            case 431:   // Afficher le nombre de ligne du fichier
+            case 432:   // Afficher le nombre de ligne du fichier
                 showNumberOfLinesOfChosenFile(listOfFiles);
                 break;
-            case 432:   // Afficher le nombre de mot du fichier
+            case 433:   // Afficher le nombre de mot du fichier
                 showNumberOfDifferentsWordsOfChosenFile(listOfFiles);
                 break;
-            case 433:   // Afficher les 50 premiers mots les plus utilisés du fichier
+            case 434:   // Afficher les 50 premiers mots les plus utilisés du fichier
                 int numbers = 50;
                 showMostUsedWords(numbers, listOfFiles);
+                break;
+            case 435:   // Afficher les mots uniquement dans ce fichier
+                showWordsOnlyInFile(listOfFiles);
                 break;
             default:
 
