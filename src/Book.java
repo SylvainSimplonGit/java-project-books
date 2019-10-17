@@ -10,18 +10,25 @@ public class Book {
     // --------------------------------------------------------------
     private int numberOfDifferentWord;
     private int numberOfTotalWord;
+    private String filename;
     private ArrayList<Word> words;
 
     // --------------------------------------------------------------
     //      Constructor
     // --------------------------------------------------------------
     public Book(String pathFileName) {
+        this.filename = pathFileName;
         readFileToArrayList(pathFileName);
     }
 
     // --------------------------------------------------------------
     //      Getters
     // --------------------------------------------------------------
+    // Get the filename of the book
+    String getFilename() {
+        return this.filename;
+    }
+
     // Get the number of different words in a book
     int getNumberOfTotalWord() {
         return this.numberOfTotalWord;
