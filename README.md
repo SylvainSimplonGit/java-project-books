@@ -111,35 +111,31 @@ Cette commande fera une copie de ce repository sur votre poste local.
 
 ## Execution
 
-### Pour Windows
+### Via IntelliJ
 
-#### Pré Traitement
+#### Pré traitement
 
-##### via JAVA
-Dans le répertoire **\<repertoire\>**, executer la commande suivante pour épurer le fichier "livre" :
+- Sélectionnez dans le menu d'IntelliJ, ***Run*** puis le sous menu ***Edit Configurations...***
 
-```cmd
-cd src && javac BooksToWords
-cd ../out/production/java-project-books/ && java BooksToWords.java ../..
-```
+- Dans ***Main Class*** choisir *BooksToWords*
 
-##### Via Python
+- Dans ***Program arguments*** entrez le nom du fichier à pré traiter :
+  - ex :
+    - **Smith-Richesse_des_Nations_1.txt**
 
-Dans le répertoire **\<repertoire\>**, executer la commande suivante pour épurer le fichier <livre.txt> :
+  **ATTENTION les fichiers à traiter devront être dans le répertoire ressources/books du projet**
 
-```cmd
-cd src && python3 BooksToWords.py ../ressources/books/<livre.txt> ../ressources/books_clean/clean_<livre.txt>  
-```
+#### Execution du programme principal
 
-Le fichier épuré sera visible dans le répertoire **\<repertoire\>**\ressources\books_clean\
+- Sélectionnez dans le menu d'IntelliJ, ***Run*** puis le sous menu ***Edit Configurations...***
 
-### Pour Linux
+- Dans ***Main Class*** choisir *Main*
 
-Dans le répertoire **\<repertoire\>**, executer la commande suivante pour changer de répertoire :
+- Dans ***Program arguments*** entrez le(s) nom(s) du(es) fichier(s) à pré traiter :
+  - ex :
+    - **ressources/book_clean/Smith-Richesse_des_Nations_1.txt** **ressources/book_clean/Smith-Richesse_des_Nations_2.txt**
 
-```bash
-cd src && javac 
-```
+  **ATTENTION à bien ajouter les bons **
 
 ## Etapes
 
@@ -189,7 +185,9 @@ cd src && javac
 
    => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/52e73253ef5b789162673daa0c4f2df507648f15)
    
-1. 
+1. Correction d'un bug lors du lancement du programme principal sans argument
+
+   => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/6a18b59865217e3dd398d48009bec564d6a75685)
 
 ## Ressources externes utilisées
 
