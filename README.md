@@ -2,9 +2,9 @@
 
 - [Rappels](#rappels)
   - [Contexte](#contexte)
-  - [MVP](#mvp)
+  - [MVP](#minimum-vailable-product)
   - [Objectifs](#objectifs)
-  - [Prétraitements](#pretraitements)
+  - [Pré traitements](#pré-traitements)
 - [Installation](#installation)
 - [Execution](#execution)
 - [Etapes](#etapes)
@@ -46,7 +46,7 @@ Parmi les informations proposées pour un fichier, ajouter :
 - afficher les mots qui sont présents seulement dans ce fichier et aucun des autres fichiers
 - Afficher pour chacun des autres fichiers le pourcentage de mots de l'autre fichier qui sont présents dans le fichier sélectionnés, par ordre décroissant de ce pourcentage.
 
-### Prétraitements
+### Pré traitements
 
 Les fichiers de texte contiennent, en plus des mots, des signes, notamment de ponctuation, qu'on voudra éliminer. Pour faciliter le mini-projet, on peut le faire avec un prétraitement, par exemple en utilisant le programme suivant pour générer des fichiers ne contenant que les mots (un par ligne), d'un fichier texte :
 
@@ -197,11 +197,11 @@ Cette commande fera une copie de ce repository sur votre poste local.
 
 ### Améliorations à prévoir
 
-   - Lors de l'ajout d'un fichier, passer par un menu qui liste tout les fichiers traités
+   - Lors de l'ajout d'un fichier, passer par un menu qui liste tous les fichiers traités
 
    - Ajouter le pré traitement dans le menu principal
    
 ## Ressources externes utilisées
 
 - [Installation de JAVA sous Windows](https://superuser.com/a/1317117)
-(https://www.commentcamarche.net/forum/affich-2143404-variable-d-environnement-java)
+- [Configuration du poste pour utiliser JAVA](https://www.commentcamarche.net/forum/affich-2143404-variable-d-environnement-java)
