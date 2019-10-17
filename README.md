@@ -135,7 +135,9 @@ Cette commande fera une copie de ce repository sur votre poste local.
   - ex :
     - **ressources/book_clean/Smith-Richesse_des_Nations_1.txt** **ressources/book_clean/Smith-Richesse_des_Nations_2.txt**
 
-  **ATTENTION à bien ajouter les bons **
+  **ATTENTION à bien ajouter les bons chmeins sinon le programme ne prendra pas le fichier invalide !**
+  
+- Ensuite parcourez les menus pour afficher ce que vous souhaitez !
 
 ## Etapes
 
