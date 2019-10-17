@@ -195,6 +195,12 @@ Cette commande fera une copie de ce repository sur votre poste local.
 
    => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/c0d5a53bc885b205735bd4837b731bf250e0d348)
 
+### Améliorations à prévoir
+
+   - Lors de l'ajout d'un fichier, passer par un menu qui liste tout les fichiers traités
+
+   - Ajouter le pré traitement dans le menu principal
+   
 ## Ressources externes utilisées
 
 - [Installation de JAVA sous Windows](https://superuser.com/a/1317117)
