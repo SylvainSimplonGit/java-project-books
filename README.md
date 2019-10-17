@@ -133,7 +133,7 @@ Cette commande fera une copie de ce repository sur votre poste local.
 
 - Dans ***Program arguments*** entrez le(s) nom(s) du(es) fichier(s) à pré traiter :
   - ex :
-    - **ressources/book_clean/Smith-Richesse_des_Nations_1.txt** **ressources/book_clean/Smith-Richesse_des_Nations_2.txt**
+    - **Smith-Richesse_des_Nations_1.txt** **Smith-Richesse_des_Nations_2.txt**
 
   **ATTENTION à bien ajouter les bons chmeins sinon le programme ne prendra pas le fichier invalide !**
   
@@ -195,12 +195,13 @@ Cette commande fera une copie de ce repository sur votre poste local.
 
    => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/c0d5a53bc885b205735bd4837b731bf250e0d348)
 
+1. Pour ajouter un fichier à la liste gérée, utiliser un menu qui liste les fichiers disponible dans le répertoire **books_clean**
+
+   => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/0d0924c244c0c772c95c5cce91e1ffc31ddc5d1d)
+
 ### Améliorations à prévoir
 
-- Lors de l'ajout d'un fichier, passer par un menu qui liste tous les fichiers traités
-  - Lister tous les fichiers qui sont dans le répertoire ressources/books_clean/
-  - Afficher uniquement les fichiers non présents dans la liste gérée
-  - Ajouter le fichier sélectionné dans la liste gérée
+- Lors de l'ajout d'un fichier, n'afficher que les fichiers non présents dans la liste gérée
 
 - Ajouter le pré traitement dans le menu principal
   - Entrée du menu : Pré traitements de tous les fichiers bruts (Attention cela peut prendre du temps !)
