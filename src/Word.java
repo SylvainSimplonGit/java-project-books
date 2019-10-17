@@ -6,10 +6,6 @@ public class Word implements Comparable<Word> {
     private String word;
     private int numberSeen;
 
-    // --------------------------------------------------------------
-    //      Constructor
-    // --------------------------------------------------------------
-
     /**
      * Constructor of Word
      *

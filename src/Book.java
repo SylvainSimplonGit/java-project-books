@@ -40,8 +40,6 @@ public class Book {
         return this.numberOfTotalWord;
     }
 
-    // Get the number of different words in a book
-
     /**
      * Get the count of different words in a book
      *
@@ -50,8 +48,6 @@ public class Book {
     int getNumberOfDifferentWord() {
         return this.numberOfDifferentWord;
     }
-
-    //
 
     /**
      * Get the list of words in the book sorted by number of occurrences
@@ -66,12 +62,6 @@ public class Book {
         Collections.sort(wordsSorted);
         return wordsSorted;
     }
-
-    // --------------------------------------------------------------
-    //      Internal Methods
-    // --------------------------------------------------------------
-
-    //
 
     /**
      * Read the file and return a HashMap containing the different words in the file
