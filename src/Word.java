@@ -6,6 +6,7 @@ public class Word implements Comparable<Word> {
     // --------------------------------------------------------------
     private String word;
     private int numberSeen;
+    private float percentSeen;
 
     // --------------------------------------------------------------
     //      Constructor
@@ -23,15 +24,20 @@ public class Word implements Comparable<Word> {
         return numberSeen;
     }
 
-    public String getWord() {
+    String getWord() {
         return word;
+    }
+
+    float getPercentSeen() {
+        return percentSeen;
     }
 
     // --------------------------------------------------------------
     //      Setter
     // --------------------------------------------------------------
-    void setNumberSeen(int numberSeen) {
+    void setNumberSeen(int numberSeen, int numberTotalOfWord) {
         this.numberSeen = numberSeen;
+        this.percentSeen = (100 * this.numberSeen) / numberTotalOfWord;
     }
 
     public void setWord(String word) {

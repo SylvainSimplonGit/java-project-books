@@ -40,7 +40,7 @@ public class Book {
     }
 
     // Get a list of words in the book sorted by number of occurrences
-    ArrayList getArrayListOfWordsSorted() {
+    ArrayList<Word> getArrayListOfWordsSorted() {
         ArrayList<Word> wordsSorted = new ArrayList<>();
         for (int i = 0; i != this.words.size(); ++i) {
             wordsSorted.add(i, this.words.get(i));
@@ -59,23 +59,20 @@ public class Book {
         this.words = new ArrayList<>();
 
         try (Scanner scFile = new Scanner(new File(nameFile))) {
-//            for (int i = 0; (scFile.hasNextLine()); ++i) {
-                while (scFile.hasNextLine()) {
-
-//                }
+            while (scFile.hasNextLine()) {
                 // Read each line of file
                 String word = scFile.nextLine();
                 // If the line isn't empty
                 if (word.length() > 0) {
                     Word wordObject = new Word(word);
+                    ++numberTotalWord;
                     // If the word is already in the list, get number of times the word is seen, if not, get zero
                     if (words.size() > 0 && words.contains(wordObject)) {
                         int index = words.indexOf(wordObject);
-                        words.get(index).setNumberSeen(words.get(index).getNumberSeen() + 1);
+                        words.get(index).setNumberSeen(words.get(index).getNumberSeen() + 1, numberTotalWord);
                     } else {
                         words.add(wordObject);
                     }
-                    ++numberTotalWord;
                 }
             }
         } catch (FileNotFoundException e) {

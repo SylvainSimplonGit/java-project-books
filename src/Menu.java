@@ -55,10 +55,11 @@ public class Menu {
                 "[3] => Afficher le nombre de mot unique du fichier",
                 "[4] => Afficher les 50 premiers mots le plus souvent utilisés dans le fichier",
                 "[5] => Afficher les mots qui sont uniquement dans le fichier selectionné",
+                "[6] => Afficher les pourcentages de mots communs avec le fichier selectionné",
                 "[0] => Retour au menu précédent"
         };
 
-        int[] validChoices = {0, 1, 2, 3, 4, 5};
+        int[] validChoices = {0, 1, 2, 3, 4, 5, 6};
 
         while (!quit) {
             int choice = getChoiceMenu(arrayChoiceInfoFileMenu, scInput);
@@ -260,6 +261,37 @@ public class Menu {
         System.out.println();
     }
 
+    // Display Percentage of appearance of words
+    private static void showPercentOfWords(ListFile listOfFiles) {
+        if (listOfFiles.hasChosenFile()) {
+            for (int i = 0; i != listOfFiles.getNumberOfFiles(); ++i) {
+                if (listOfFiles.getPathOfFileByIndex(i) != bookChosen.getFilename()) {
+                    Book book = new Book(listOfFiles.getPathOfFileByIndex(i));
+                    ArrayList<Word> arrayListBook = book.getArrayListOfWordsSorted();
+                    ArrayList<Word> arrayListChosenBook = bookChosen.getArrayListOfWordsSorted();
+
+                    int countOfCommonWordInBook = getCountOfCommonWords(arrayListBook, arrayListChosenBook);
+
+                    float percentOfWords = (float) (100 * countOfCommonWordInBook) / bookChosen.getNumberOfDifferentWord();
+                    System.out.println(percentOfWords + " % des mots du fichier " + listOfFiles.getPathOfFileByIndex(i) + " sont dans le fichier de référence " + bookChosen.getFilename());
+                }
+            }
+        } else {
+            System.out.println("Pas encore de fichiers sélectionné !");
+        }
+        System.out.println();
+    }
+
+    private static int getCountOfCommonWords(ArrayList<Word> listOfWordA, ArrayList<Word> listOfWordB) {
+        int countOfCommonWords = 0;
+        ArrayList<Word> listOfWordMin = (listOfWordA.size() < listOfWordB.size()) ? listOfWordA : listOfWordB;
+        for (Word word : listOfWordMin) {
+            if (listOfWordB.contains(word))
+                ++countOfCommonWords;
+        }
+        return countOfCommonWords;
+    }
+
     // Display the menu and get the type input
     private static int getChoiceMenu(String[] entriesMenu, Scanner scInput) {
         boolean noValid = true;
@@ -357,6 +389,9 @@ public class Menu {
                 break;
             case 435:   // Afficher les mots uniquement dans ce fichier
                 showWordsOnlyInFile(listOfFiles);
+                break;
+            case 436:   // Afficher les pourcentage d'apparition des mots
+                showPercentOfWords(listOfFiles);
                 break;
             default:
 
