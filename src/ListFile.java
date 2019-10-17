@@ -1,3 +1,5 @@
+import java.io.File;
+
 public class ListFile {
     // --------------------------------------------------------------
     //      Declare attributes
@@ -10,7 +12,7 @@ public class ListFile {
     //      Constructor
     // --------------------------------------------------------------
     public ListFile(String[] listFiles) {
-        listOfFiles = listFiles;
+        setListOfValidFiles(listFiles);
         numberOfFiles = calculateNumberOfFiles();
     }
 
@@ -50,11 +52,17 @@ public class ListFile {
     // --------------------------------------------------------------
     // Add a file filename to the files list
     void addFileToListOfFiles(String filename) {
-        String[] newListOfFiles = new String[this.listOfFiles.length + 1];
-        for (int i = 0; i != this.listOfFiles.length; ++i) {
-            newListOfFiles[i] = this.listOfFiles[i];
+        String[] newListOfFiles;
+        if (this.listOfFiles == null) {
+            newListOfFiles = new String[1];
+            newListOfFiles[0] = filename;
+        } else {
+            newListOfFiles = new String[this.listOfFiles.length + 1];
+            for (int i = 0; i != this.listOfFiles.length; ++i) {
+                newListOfFiles[i] = this.listOfFiles[i];
+            }
+            newListOfFiles[this.listOfFiles.length] = filename;
         }
-        newListOfFiles[this.listOfFiles.length] = filename;
         this.listOfFiles = newListOfFiles;
         this.setNumberOfFiles();
     }
@@ -87,6 +95,21 @@ public class ListFile {
     // --------------------------------------------------------------
     //      Private Methods
     // --------------------------------------------------------------
+    // Create list of valid files
+    private void setListOfValidFiles(String[] listOfFilesToTest) {
+        for (String file : listOfFilesToTest) {
+            if (isValidFile(file))
+                this.addFileToListOfFiles(file);
+        }
+    }
+
+    // Valid file in constructor
+    private static boolean isValidFile(String filename) {
+        File newFile = new File(filename);
+        // Si le fichier existe
+        return newFile.exists();
+    }
+
     // Set the number of file in files list
     private void setNumberOfFiles() {
         this.numberOfFiles = this.listOfFiles.length;
@@ -94,7 +117,11 @@ public class ListFile {
 
     // Return the number of files in the file list
     private int calculateNumberOfFiles() {
-        return this.listOfFiles.length;
+        if (this.listOfFiles == null) {
+            return 0;
+        } else {
+            return this.listOfFiles.length;
+        }
     }
 
 }

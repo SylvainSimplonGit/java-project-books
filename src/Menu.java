@@ -69,9 +69,14 @@ public class Menu {
 
     // Get a formatted files list to display
     private static String[] getListOfFiles(ListFile listOfFiles) {
-        String[] arrayChoiceListOfFilesMenu = new String[listOfFiles.getListOfFiles().length];
-        for (int i = 0; i != arrayChoiceListOfFilesMenu.length; ++i) {
-            arrayChoiceListOfFilesMenu[i] = "[" + i + "] => " + listOfFiles.getListOfFiles()[i];
+        String[] arrayChoiceListOfFilesMenu;
+        if (listOfFiles.getNumberOfFiles() > 0) {
+            arrayChoiceListOfFilesMenu = new String[listOfFiles.getListOfFiles().length];
+            for (int i = 0; i != arrayChoiceListOfFilesMenu.length; ++i) {
+                arrayChoiceListOfFilesMenu[i] = "[" + i + "] => " + listOfFiles.getListOfFiles()[i];
+            }
+        } else {
+            arrayChoiceListOfFilesMenu = new String[0];
         }
         return arrayChoiceListOfFilesMenu;
     }
