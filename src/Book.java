@@ -93,7 +93,7 @@ public class Book {
                     // If the word is already in the list, get number of times the word is seen, if not, get zero
                     if (words.size() > 0 && words.contains(wordObject)) {
                         int index = words.indexOf(wordObject);
-                        words.get(index).setNumberSeen(words.get(index).getNumberSeen() + 1, numberTotalWord);
+                        words.get(index).setNumberSeen(words.get(index).getNumberSeen() + 1);
                     } else {
                         words.add(wordObject);
                     }

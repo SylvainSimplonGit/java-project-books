@@ -129,9 +129,10 @@ public class Menu {
      */
     private static void showMenuAddFile(boolean quit, ListFile listOfFiles, Scanner scInput) {
         boolean noValid = true;
-        String entry = "";
-        entry = scInput.nextLine();
         while (noValid || !quit) {
+            // Clean up all last entries
+            scInput.nextLine();
+            String entry;
             System.out.println("Veuillez entrer le nom et l'emplacement du fichier à ajouter :");
             try {
                 entry = scInput.nextLine();
@@ -150,7 +151,6 @@ public class Menu {
                 noValid = true;
             }
         }
-//        return entry;
     }
 
     /**
@@ -348,21 +348,32 @@ public class Menu {
     private static void showPercentOfWords(ListFile listOfFiles) {
         if (listOfFiles.hasChosenFile()) {
             for (int i = 0; i != listOfFiles.getNumberOfFiles(); ++i) {
-                if (listOfFiles.getPathOfFileByIndex(i) != bookChosen.getFilename()) {
+                if (!listOfFiles.getPathOfFileByIndex(i).equals(bookChosen.getFilename())) {
                     Book book = new Book(listOfFiles.getPathOfFileByIndex(i));
                     ArrayList<Word> arrayListBook = book.getArrayListOfWordsSorted();
                     ArrayList<Word> arrayListChosenBook = bookChosen.getArrayListOfWordsSorted();
 
                     int countOfCommonWordInBook = getCountOfCommonWords(arrayListBook, arrayListChosenBook);
 
-                    float percentOfWords = (float) (100 * countOfCommonWordInBook) / bookChosen.getNumberOfDifferentWord();
-                    System.out.println(percentOfWords + " % des mots du fichier " + listOfFiles.getPathOfFileByIndex(i) + " sont dans le fichier de référence " + bookChosen.getFilename());
+                    float percentOfWords = calculatePercent(countOfCommonWordInBook, bookChosen.getNumberOfDifferentWord());
+                    System.out.println(String.format("%.2f", percentOfWords) + " % des mots du fichier " + listOfFiles.getPathOfFileByIndex(i) + " sont dans le fichier de référence " + bookChosen.getFilename());
                 }
             }
         } else {
             System.out.println("Pas encore de fichiers sélectionné !");
         }
         System.out.println();
+    }
+
+    /**
+     * Calculate the percentage
+     *
+     * @param value         : the number of element
+     * @param valueMax      : the number max of element
+     * @return              : the percentage of value compared to valueMax
+     */
+    private static float calculatePercent(int value, int valueMax) {
+        return (float)( 100 * value ) / valueMax;
     }
 
     /**
@@ -424,6 +435,7 @@ public class Menu {
         for (int validChoice : validChoices) {
             if (choice == validChoice) {
                 flagNoValid = true;
+                break;
             }
         }
         return flagNoValid;
