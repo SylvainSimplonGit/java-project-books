@@ -2,4 +2,5 @@
 out
 java-project-books.iml
 .vscode/settings.json
-*.txt
+ressources/books_clean/*.txt
+ressources/extracts/*.txt
