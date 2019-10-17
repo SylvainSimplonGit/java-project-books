@@ -1,4 +1,3 @@
-//public class Word {
 public class Word implements Comparable<Word> {
 
     // --------------------------------------------------------------
