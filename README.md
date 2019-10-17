@@ -123,7 +123,7 @@ Cette commande fera une copie de ce repository sur votre poste local.
   - ex :
     - **Smith-Richesse_des_Nations_1.txt**
 
-  **ATTENTION les fichiers à traiter devront être dans le répertoire ressources/books du projet**
+  **ATTENTION** les fichiers à traiter devront être dans le répertoire ressources/books du projet
 
 #### Execution du programme principal
 
@@ -186,7 +186,7 @@ Cette commande fera une copie de ce repository sur votre poste local.
 1. Affichage des 50 mots les plus utilisés sur un fichier
 
    => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/52e73253ef5b789162673daa0c4f2df507648f15)
-   
+
 1. Correction d'un bug lors du lancement du programme principal sans argument
 
    => [commit](https://github.com/SylvainSimplonGit/java-project-books/commit/6a18b59865217e3dd398d48009bec564d6a75685)
@@ -197,10 +197,16 @@ Cette commande fera une copie de ce repository sur votre poste local.
 
 ### Améliorations à prévoir
 
-   - Lors de l'ajout d'un fichier, passer par un menu qui liste tous les fichiers traités
+- Lors de l'ajout d'un fichier, passer par un menu qui liste tous les fichiers traités
+  - Lister tous les fichiers qui sont dans le répertoire ressources/books_clean/
+  - Afficher uniquement les fichiers non présents dans la liste gérée
+  - Ajouter le fichier sélectionné dans la liste gérée
 
-   - Ajouter le pré traitement dans le menu principal
-   
+- Ajouter le pré traitement dans le menu principal
+  - Entrée du menu : Pré traitements de tous les fichiers bruts (Attention cela peut prendre du temps !)
+  - Lancement du pré traitement pour tous les fichiers du répertoire /ressources/books
+  - Modifier la documentation en conséquence
+
 ## Ressources externes utilisées
 
 - [Installation de JAVA sous Windows](https://superuser.com/a/1317117)
