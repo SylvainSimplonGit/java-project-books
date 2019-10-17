@@ -83,6 +83,10 @@ public class Menu {
         }
     }
 
+    private static String[] getListOfFilesInFolderClean(ListFile listOfFiles) {
+        return getListOfFilesWithIndex(listOfFiles.getListOfFileInFolder());
+    }
+
     /**
      * Get a formatted files list to display
      *
@@ -90,16 +94,26 @@ public class Menu {
      * @return              : an Array that contains each filename in the managed file list
      */
     private static String[] getListOfFiles(ListFile listOfFiles) {
-        String[] arrayChoiceListOfFilesMenu;
-        if (listOfFiles.getNumberOfFiles() > 0) {
-            arrayChoiceListOfFilesMenu = new String[listOfFiles.getListOfFiles().length];
-            for (int i = 0; i != arrayChoiceListOfFilesMenu.length; ++i) {
-                arrayChoiceListOfFilesMenu[i] = "[" + i + "] => " + listOfFiles.getListOfFiles()[i];
+        return getListOfFilesWithIndex(listOfFiles.getListOfFiles());
+    }
+
+    /**
+     * Get a list of files with an index at start of line
+     *
+     * @param arrayOfFiles  :
+     * @return              : a list of string which start by index and add the file
+     */
+    private static String[] getListOfFilesWithIndex(String[] arrayOfFiles) {
+        String[] arrayOfFilesResult;
+        if (arrayOfFiles.length > 0) {
+            arrayOfFilesResult = new String[arrayOfFiles.length];
+            for (int i = 0; i != arrayOfFiles.length; ++i) {
+                arrayOfFilesResult[i] = "[" + i + "] => " + arrayOfFiles[i];
             }
         } else {
-            arrayChoiceListOfFilesMenu = new String[0];
+            arrayOfFilesResult = new String[0];
         }
-        return arrayChoiceListOfFilesMenu;
+        return arrayOfFilesResult;
     }
 
     /**
@@ -128,28 +142,34 @@ public class Menu {
      * @param scInput       : Object Scanner
      */
     private static void showMenuAddFile(boolean quit, ListFile listOfFiles, Scanner scInput) {
-        boolean noValid = true;
-        while (noValid || !quit) {
-            // Clean up all last entries
-            scInput.nextLine();
-            String entry;
-            System.out.println("Veuillez entrer le nom et l'emplacement du fichier à ajouter :");
-            try {
-                entry = scInput.nextLine();
-                File newFile = new File(entry);
-                // Si le fichier existe
-                if (newFile.exists()) {
-                    noValid = false;
-                    listOfFiles.addFileToListOfFiles(entry);
-                } else {
-                    System.out.println("Le fichier " + entry + " n'existe pas, veuillez entrer un nom de fichier existant !");
+        if (listOfFiles.getListOfFileInFolder().length > 0) {
+            String[] arrayChoiceListOfFilesMenu = getListOfFilesInFolderClean(listOfFiles);
+
+            while (!quit) {
+                System.out.println("Quel fichier voulez ajouter à la liste");
+                int[] validChoices = new int[listOfFiles.getListOfFileInFolder().length];
+                for (int i = 0; i != validChoices.length; ++i) {
+                    validChoices[i] = i;
                 }
 
-            } catch (Exception e) {
-                scInput.nextLine();
-                System.out.println("Une erreur est survenue !");
-                noValid = true;
+                int choice = getChoiceMenu(arrayChoiceListOfFilesMenu, scInput);
+                if (isValidChoice(choice, validChoices)) {
+                    if (!listOfFiles.isFileExistInList(listOfFiles.getListOfFileInFolder()[choice])) {
+                        listOfFiles.addFileToListOfFiles(listOfFiles.getListOfFileInFolder()[choice]);
+                        quit = true;
+                    } else {
+                        System.out.println("Le fichier choisi existe déjà dans la liste !");
+                        System.out.println();
+                    }
+                } else {
+                    System.out.println("Choix de fichier non valide, veuillez choisir dans la liste !");
+                    System.out.println();
+                }
             }
+        } else {
+            System.out.println();
+            System.out.println("La liste de fichiers est vide, vous ne pouvez donc pas ajouter un fichier !");
+            System.out.println();
         }
     }
 
@@ -456,14 +476,13 @@ public class Menu {
             case 0:     // Quitter le programme
                 quit = true;
                 break;
-            case 1:     //Lister les fichiers
-            case 41:    //Lister les fichiers
-                showListOfFiles(getListOfFiles(listOfFiles));
+            case 1:     //Lister les fichiers du répertoire clean
+                showListOfFiles(getListOfFilesInFolderClean(listOfFiles));
                 break;
             case 2:     // Ajouter un fichier
-                quit = true;
+//                quit = true;
                 showMenuAddFile(quit, listOfFiles, scInput);
-                quit = false;
+//                quit = false;
                 break;
             case 3:     // Supprimer un fichier
                 showMenuDeleteFile(quit, listOfFiles, scInput);
@@ -476,6 +495,9 @@ public class Menu {
             case 40:    // Retour au menu principal
                 quit = true;
                 getEntryOfMainMenu(quit, listOfFiles, scInput);
+                break;
+            case 41:    //Lister les fichiers
+                showListOfFiles(getListOfFiles(listOfFiles));
                 break;
             case 42:    // Choisir un des fichiers
                 showMenuChooseFile(quit, listOfFiles, scInput);

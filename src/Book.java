@@ -12,6 +12,7 @@ public class Book {
     private int numberOfTotalWord;
     private String filename;
     private ArrayList<Word> words;
+    private final String pathFolderCleanFiles = "ressources/books_clean/";
 
     /**
      * Constructor of Book
@@ -72,7 +73,7 @@ public class Book {
         int numberTotalWord = 0;
         this.words = new ArrayList<>();
 
-        try (Scanner scFile = new Scanner(new File(nameFile))) {
+        try (Scanner scFile = new Scanner(new File(pathFolderCleanFiles + nameFile))) {
             while (scFile.hasNextLine()) {
                 // Read each line of file
                 String word = scFile.nextLine();

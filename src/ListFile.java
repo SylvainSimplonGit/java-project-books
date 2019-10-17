@@ -1,4 +1,5 @@
 import java.io.File;
+import java.util.ArrayList;
 
 public class ListFile {
     // --------------------------------------------------------------
@@ -7,6 +8,7 @@ public class ListFile {
     private String[] listOfFiles;
     private int numberOfFiles;
     private String pathOfChosenFile;
+    private final String pathFolderCleanFiles = "ressources/books_clean/";
 
     // --------------------------------------------------------------
     //      Constructor
@@ -92,6 +94,32 @@ public class ListFile {
         }
     }
 
+    String[] getListOfFileInFolder() {
+        File folderCleanFile = new File(this.pathFolderCleanFiles);
+
+        String[] listFileInCleanFolder = folderCleanFile.list();
+        ArrayList<String> listOfFileInFolder = new ArrayList<>();
+        if (listFileInCleanFolder != null) {
+            for (String fileClean : listFileInCleanFolder) {
+                if (fileClean.endsWith(".txt"))
+                    listOfFileInFolder.add(fileClean);
+            }
+        }
+        String[] arrayOfFileInFolder = new String[listOfFileInFolder.size()];
+        for (int i = 0; i != listOfFileInFolder.size(); ++i) {
+            arrayOfFileInFolder[i] = listOfFileInFolder.get(i);
+        }
+        return arrayOfFileInFolder;
+    }
+
+    boolean isFileExistInList(String filename) {
+        for (String filenameTest : listOfFiles) {
+            if (filename.equals(filenameTest))
+                return true;
+        }
+        return false;
+    }
+
     // --------------------------------------------------------------
     //      Private Methods
     // --------------------------------------------------------------
@@ -104,8 +132,8 @@ public class ListFile {
     }
 
     // Valid file in constructor
-    private static boolean isValidFile(String filename) {
-        File newFile = new File(filename);
+    private boolean isValidFile(String filename) {
+        File newFile = new File(pathFolderCleanFiles + filename);
         // Si le fichier existe
         return newFile.exists();
     }
