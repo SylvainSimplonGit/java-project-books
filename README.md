@@ -135,7 +135,7 @@ Cette commande fera une copie de ce repository sur votre poste local.
   - ex :
     - **Smith-Richesse_des_Nations_1.txt** **Smith-Richesse_des_Nations_2.txt**
 
-  **ATTENTION à bien ajouter les bons chmeins sinon le programme ne prendra pas le fichier invalide !**
+  **ATTENTION à bien ajouter les bons chmins sinon le programme ne prendra pas le fichier invalide !**
   
 - Ensuite parcourez les menus pour afficher ce que vous souhaitez !
 
@@ -207,8 +207,21 @@ Cette commande fera une copie de ce repository sur votre poste local.
   - Entrée du menu : Pré traitements de tous les fichiers bruts (Attention cela peut prendre du temps !)
   - Lancement du pré traitement pour tous les fichiers du répertoire /ressources/books
   - Modifier la documentation en conséquence
+  
+- Green Code
+  - "Be Lazy" : Charger les contenus des livres **QUE** lorsqu'on en a besoin
+  - Vérifier si le livre est chargé avant de retourner une propriété du livre
+  
+- Ne pas oublier de fermer le Scanner d'entrée une fois inutile
+
+- Renommer les variables qui comporte un type de variable
 
 ## Ressources externes utilisées
 
 - [Installation de JAVA sous Windows](https://superuser.com/a/1317117)
 - [Configuration du poste pour utiliser JAVA](https://www.commentcamarche.net/forum/affich-2143404-variable-d-environnement-java)
+
+## Références 
+
+- [Correction avec implémentation d'interface pour les menus](https://github.com/simplonco/java-project-books/tree/master/Etudes)
+- [Correction complète](https://github.com/jlsgrand/java-project-books)

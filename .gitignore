@@ -4,3 +4,4 @@ java-project-books.iml
 .vscode/settings.json
 ressources/books_clean/*.txt
 ressources/extracts/*.txt
+src/tests.java
